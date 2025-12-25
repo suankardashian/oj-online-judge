@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心 - OJ在线判题平台</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" />
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/mine.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg oj-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="Index.html">
+                <i class="fas fa-code me-2 text-primary"></i>
+                <span>OJ在线判题平台</span>
+            </a>
+
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse" id="ojNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ProblemList.html">
+                            <i class="fas fa-list-ol me-1"></i>题目列表
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./Ranking.html">
+                            <i class="fas fa-trophy me-1"></i>刷题排行
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./Contest.html">
+                            <i class="fas fa-calendar-alt me-1"></i>竞赛活动
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./Category.html">
+                            <i class="fas fa-book me-1"></i>题库分类
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 用户区域 -->
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item me-3">
+                        <a class="nav-link d-flex align-items-center" href="Mine.html" id="userInfo">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded-circle" height="24" alt="用户头像" id="userAvatar"/>
+                            <span class="ms-2" id="userName">张三</span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge rounded-pill bg-danger position-absolute top-0 end-0 translate-middle" id="noticeCount">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-mdb-dropdown-init>
+                            <i class="fas fa-cog fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="Mine.html">个人中心</a></li>
+                            <li><a class="dropdown-item" href="#">刷题统计</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="Login.html">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#ojNavbar"
+                aria-controls="ojNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
+
+        </div>
+    </nav>
+
+    <div class="content-wrapper single-column">
+        <div class="col-12">
+            <!-- 个人资料部分 -->
+            <div class="profile-section">
+                <div class="profile-header">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" alt="用户头像" class="profile-avatar" id="profileAvatar">
+                    <div class="profile-info">
+                        <h2 id="profileName">张三</h2>
+                        <p class="text-muted" id="profileEmail">zhangsan@example.com</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" id="totalProblems">128</span>
+                                <span class="stat-label">总题数</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="solvedProblems">86</span>
+                                <span class="stat-label">通过题数</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="acRate">67%</span>
+                                <span class="stat-label">通过率</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="rank">142</span>
+                                <span class="stat-label">排名</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近做题记录 -->
+            <div class="profile-section">
+                <h3 class="section-title">
+                    <i class="fas fa-history me-2 text-primary"></i>最近做题记录
+                </h3>
+                <div id="recentRecords">
+                    <!-- 动态渲染最近做题记录 -->
+                    <div class="text-center text-muted py-3">加载中...</div>
+                </div>
+                <a href="#" class="btn btn-sm btn-outline-primary w-100 mt-3">
+                    <i class="fas fa-list me-1"></i>查看全部记录
+                </a>
+            </div>
+
+            <!-- 个人设置 -->
+            <div class="profile-section">
+                <h3 class="section-title">
+                    <i class="fas fa-cog me-2 text-primary"></i>个人设置
+                </h3>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-user-cog text-primary"></i>
+                        <span>账号设置</span>
+                    </div>
+                    <span class="setting-value">修改密码、邮箱</span>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-bell text-primary"></i>
+                        <span>通知设置</span>
+                    </div>
+                    <span class="setting-value">消息提醒、邮件通知</span>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-language text-primary"></i>
+                        <span>语言设置</span>
+                    </div>
+                    <span class="setting-value">中文 (简体)</span>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-shield-alt text-primary"></i>
+                        <span>隐私设置</span>
+                    </div>
+                    <span class="setting-value">个人信息可见性</span>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-question-circle text-primary"></i>
+                        <span>帮助中心</span>
+                    </div>
+                    <span class="setting-value">常见问题、使用指南</span>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <i class="fas fa-sign-out-alt text-primary"></i>
+                        <span>退出登录</span>
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger" onclick="logout()">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDB JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script src="../js/Mine.js"></script>
+</body>
+
+</html>

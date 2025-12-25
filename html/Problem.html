@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>题目详情 - OJ在线判题平台</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" />
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/problem.css">
+    <style>
+        /* 代码编辑器样式 */
+        #codeEditor {
+            width: 100%;
+            height: 300px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        
+        /* 结果展示样式 */
+        .result-section {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .result-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .result-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .test-case-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .test-case-pass {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .test-case-fail {
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg oj-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="Index.html">
+                <i class="fas fa-code me-2 text-primary"></i>
+                <span>OJ在线判题平台</span>
+            </a>
+
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse" id="ojNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ProblemList.html">
+                            <i class="fas fa-list-ol me-1"></i>题目列表
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ranking.html">
+                            <i class="fas fa-trophy me-1"></i>刷题排行
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contest.html">
+                            <i class="fas fa-calendar-alt me-1"></i>竞赛活动
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Category.html">
+                            <i class="fas fa-book me-1"></i>题库分类
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 用户区域 -->
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item me-3">
+                        <a class="nav-link d-flex align-items-center" href="Mine.html" id="userInfo">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded-circle" height="24" alt="用户头像" id="userAvatar"/>
+                            <span class="ms-2" id="userName">张三</span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge rounded-pill bg-danger position-absolute top-0 end-0 translate-middle" id="noticeCount">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-mdb-dropdown-init>
+                            <i class="fas fa-cog fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="Mine.html">个人中心</a></li>
+                            <li><a class="dropdown-item" href="#">刷题统计</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="Login.html">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#ojNavbar"
+                aria-controls="ojNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+    </nav>
+
+    <div class="content-wrapper single-column">
+        <div class="col-12">
+            <!-- 题目详情部分 -->
+            <div class="problem-detail-section">
+                <div class="problem-header">
+                    <h3 class="problem-title" id="problemTitle">加载题目中...</h3>
+                    <div class="problem-meta">
+                        <span class="difficulty-badge" id="problemDifficulty">--</span>
+                        <span id="problemPassRate">通过率: --%</span>
+                        <span id="problemSolvedCount">--人通过</span>
+                        <span id="problemAttemptCount">--次尝试</span>
+                    </div>
+                </div>
+                
+                <div class="problem-description">
+                    <h5><i class="fas fa-file-alt me-2"></i>题目描述</h5>
+                    <div id="problemDescription">加载题目描述中...</div>
+                </div>
+                
+                <!-- 代码提交部分 -->
+                <div class="code-submission-section">
+                    <h5><i class="fas fa-code me-2"></i>编写代码</h5>
+                    <div class="form-group">
+                        <label for="languageSelect">选择编程语言:</label>
+                        <select class="form-control" id="languageSelect" style="width: 200px; display: inline-block;">
+                            <option value="javascript">JavaScript</option>
+                            <!-- 可以添加其他语言选项 -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="codeEditor">代码:</label>
+                        <textarea id="codeEditor" placeholder="在这里编写代码...">// 请在这里编写JavaScript代码
+// 示例：两数之和
+function solution(input) {
+    const [a, b] = input.split(',').map(Number);
+    return a + b;
+}
+
+// 输入格式：数字1,数字2
+// 输出格式：两数之和</textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button id="submitBtn" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>提交代码
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 提交结果部分 -->
+                <div id="resultSection" class="result-section" style="display: none;">
+                    <h5><i class="fas fa-chart-line me-2"></i>提交结果</h5>
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDB JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL中的题目ID参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const problemId = urlParams.get('id');
+            
+            if (!problemId) {
+                alert('题目ID无效');
+                window.location.href = 'ProblemList.html';
+                return;
+            }
+            
+            // 加载用户信息
+            loadUserInfo();
+            
+            // 加载题目数据
+            loadProblemData(problemId);
+            
+            // 绑定提交按钮事件
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                submitCode(problemId);
+            });
+        });
+        
+        // 加载用户信息
+        function loadUserInfo() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('userName').textContent = username;
+            }
+        }
+        
+        // 加载题目数据
+        function loadProblemData(problemId) {
+            // 调用后端API获取题目数据
+            fetch(`http://localhost:3000/api/problems/${problemId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('获取题目数据失败');
+                    }
+                    return response.json();
+                })
+                .then(problem => {
+                    // 更新页面内容
+                    document.getElementById('problemTitle').textContent = problem.title;
+                    document.getElementById('problemDescription').innerHTML = problem.description.replace(/\n/g, '<br>').replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+                    document.getElementById('problemDifficulty').textContent = problem.difficulty === 'easy' ? '简单' : problem.difficulty === 'medium' ? '中等' : '困难';
+                    document.getElementById('problemDifficulty').className = `difficulty-badge difficulty-${problem.difficulty}`;
+                    document.getElementById('problemPassRate').textContent = `通过率: ${problem.pass_rate}%`;
+                    document.getElementById('problemSolvedCount').textContent = `${problem.solved_count}人通过`;
+                    document.getElementById('problemAttemptCount').textContent = `${problem.attempt_count}次尝试`;
+                })
+                .catch(error => {
+                    console.error('加载题目数据失败:', error);
+                    document.getElementById('problemTitle').textContent = '题目加载失败';
+                    document.getElementById('problemDescription').textContent = '无法加载题目数据，请稍后重试。';
+                });
+        }
+        
+        // 提交代码
+        function submitCode(problemId) {
+            const code = document.getElementById('codeEditor').value;
+            const language = document.getElementById('languageSelect').value;
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                alert('请先登录');
+                window.location.href = 'Login.html';
+                return;
+            }
+            
+            if (!code.trim()) {
+                alert('请编写代码后再提交');
+                return;
+            }
+            
+            // 显示提交中状态
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>提交中...';
+            submitBtn.disabled = true;
+            
+            // 调用后端API提交代码
+            axios({
+                url: 'http://localhost:3000/api/submissions',
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                data: {
+                    problemId: parseInt(problemId),
+                    code: code,
+                    language: language
+                }
+            }).then(result => {
+                console.log('提交成功:', result.data);
+                showSubmissionResult(result.data.submission);
+            }).catch(error => {
+                console.error('提交失败:', error);
+                alert('提交失败: ' + (error.response?.data?.message || error.message));
+            }).finally(() => {
+                // 恢复提交按钮状态
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>提交代码';
+                submitBtn.disabled = false;
+            });
+        }
+        
+        // 显示提交结果
+        function showSubmissionResult(submission) {
+            const resultSection = document.getElementById('resultSection');
+            const resultContent = document.getElementById('resultContent');
+            
+            // 构建结果HTML
+            let html = `
+                <div class="mb-3">
+                    <strong>提交状态:</strong> 
+                    <span class="${submission.result === 'Accepted' ? 'text-success' : 'text-danger'}">
+                        ${submission.result === 'Accepted' ? '通过' : submission.result}
+                    </span>
+                </div>
+                <div class="mb-3">
+                    <strong>得分:</strong> ${submission.score}分
+                </div>
+                <div class="mb-3">
+                    <strong>执行时间:</strong> ${submission.execution_time}ms
+                </div>
+            `;
+            
+            // 显示测试用例结果
+            if (submission.testCases && submission.testCases.length > 0) {
+                html += '<h6>测试用例结果:</h6>';
+                submission.testCases.forEach((testCase, index) => {
+                    const testCaseClass = testCase.passed ? 'test-case-pass' : 'test-case-fail';
+                    html += `
+                        <div class="test-case-result ${testCaseClass}">
+                            <strong>测试用例 ${index + 1}:</strong> ${testCase.passed ? '通过' : '失败'}<br>
+                            <strong>输入:</strong> ${testCase.input}<br>
+                            <strong>预期输出:</strong> ${testCase.expected}<br>
+                            <strong>实际输出:</strong> ${testCase.actual}
+                        </div>
+                    `;
+                });
+            }
+            
+            // 显示结果
+            resultContent.innerHTML = html;
+            resultSection.style.display = 'block';
+            
+            // 滚动到结果区域
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>题目列表 - OJ在线判题平台</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" />
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/problemList.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg oj-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="Index.html">
+                <i class="fas fa-code me-2 text-primary"></i>
+                <span>OJ在线判题平台</span>
+            </a>
+
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse" id="ojNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="ProblemList.html">
+                            <i class="fas fa-list-ol me-1"></i>题目列表
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ranking.html">
+                            <i class="fas fa-trophy me-1"></i>刷题排行
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contest.html">
+                            <i class="fas fa-calendar-alt me-1"></i>竞赛活动
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Category.html">
+                            <i class="fas fa-book me-1"></i>题库分类
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 用户区域 -->
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item me-3">
+                        <a class="nav-link d-flex align-items-center" href="Mine.html" id="userInfo">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded-circle" height="24" alt="用户头像" id="userAvatar"/>
+                            <span class="ms-2" id="userName">张三</span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge rounded-pill bg-danger position-absolute top-0 end-0 translate-middle" id="noticeCount">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-mdb-dropdown-init>
+                            <i class="fas fa-cog fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="Mine.html">个人中心</a></li>
+                            <li><a class="dropdown-item" href="#">刷题统计</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="Login.html">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#ojNavbar"
+                aria-controls="ojNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+    </nav>
+
+    <div class="content-wrapper single-column">
+        <div class="col-12">
+            <!-- 题目列表部分 -->
+            <div class="problem-list-section">
+                <h3 class="section-title">
+                    <i class="fas fa-list-ol me-2 text-primary"></i>题目列表
+                </h3>
+                
+                <!-- 筛选栏 -->
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" id="searchInput" placeholder="搜索题目...">
+                        </div>
+                    </div>
+                    
+                    <div class="difficulty-select">
+                        <select class="form-select" id="difficultyFilter">
+                            <option value="">全部难度</option>
+                            <option value="easy">简单</option>
+                            <option value="medium">中等</option>
+                            <option value="hard">困难</option>
+                        </select>
+                    </div>
+                    
+                    <div class="category-select">
+                        <select class="form-select" id="categoryFilter">
+                            <option value="">全部分类</option>
+                            <option value="array">数组</option>
+                            <option value="string">字符串</option>
+                            <option value="tree">树</option>
+                            <option value="dynamic">动态规划</option>
+                            <option value="graph">图论</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="applyFilters()">
+                        <i class="fas fa-filter me-1"></i>筛选
+                    </button>
+                </div>
+                
+                <!-- 题目列表 -->
+                <div id="problemList">
+                    <!-- 动态渲染题目列表 -->
+                    <div class="text-center text-muted py-3">加载中...</div>
+                </div>
+                
+                <!-- 分页 -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination" id="pagination">
+                        <!-- 动态渲染分页按钮 -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDB JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script src="../js/Problems.js"></script>
+    
+
+</body>
+
+</html>

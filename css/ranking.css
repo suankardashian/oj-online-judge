@@ -1,0 +1,193 @@
+/* 排名页面特定样式 */
+
+/* 排名区域 */
+.ranking-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 0rem;
+}
+
+.section-title {
+    color: #030506;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2rem;
+}
+
+/* 排名类型标签 */
+.ranking-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+    overflow-x: auto;
+}
+
+.ranking-tab {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    color: #6c757d;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.ranking-tab:hover {
+    background-color: #f8f9fa;
+}
+
+.ranking-tab.active {
+    background-color: #6c92ca;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+/* 个人排名卡片 */
+.personal-ranking-card {
+    background-color: #f0f7ff;
+    border: 1px solid #d1ecf1;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personal-ranking-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.personal-ranking-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.ranking-points {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+/* 排名表格 */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.ranking-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.ranking-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* 设置表格列宽 */
+.ranking-table th:first-child,
+.ranking-table td:first-child {
+    width: 80px;
+    text-align: center;
+}
+
+.ranking-table th:nth-child(2),
+.ranking-table td:nth-child(2) {
+    width: 200px;
+}
+
+.ranking-table th:nth-child(3),
+.ranking-table td:nth-child(3) {
+    width: 100px;
+}
+
+.ranking-table th:nth-child(4),
+.ranking-table td:nth-child(4),
+.ranking-table th:nth-child(5),
+.ranking-table td:nth-child(5),
+.ranking-table th:nth-child(6),
+.ranking-table td:nth-child(6) {
+    width: 120px;
+    text-align: center;
+}
+
+.ranking-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* 排名徽章 */
+.rank-badge {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #dee2e6;
+    color: #495057;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* 排名用户信息 */
+.ranking-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* 排名头像 */
+.ranking-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.rank-badge.gold { background-color: #ffd700; color: #fff; }
+.rank-badge.silver { background-color: #c0c0c0; color: #fff; }
+.rank-badge.bronze { background-color: #cd7f32; color: #fff; }
+
+/* 排名页面响应式样式 */
+@media (max-width: 768px) {
+    .personal-ranking-card {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .personal-ranking-stats {
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .ranking-table {
+        font-size: 0.85rem;
+    }
+    
+    .ranking-table th,
+    .ranking-table td {
+        padding: 0.8rem 0.5rem;
+    }
+    
+    /* 隐藏部分列以适应小屏幕 */
+    .ranking-table th:nth-child(4),
+    .ranking-table td:nth-child(4) {
+        display: none;
+    }
+}

@@ -1,0 +1,209 @@
+/* 竞赛页面特定样式 */
+
+/* 竞赛区域 */
+.contest-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2rem;
+}
+
+/* 竞赛类型标签 */
+.contest-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+}
+
+.contest-tab {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    color: #6c757d;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.contest-tab:hover {
+    background-color: #f8f9fa;
+}
+
+.contest-tab.active {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+/* 竞赛卡片 */
+.contest-card {
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.2s;
+}
+
+.contest-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.contest-card.ongoing {
+    border-left: 4px solid #dc3545;
+}
+
+.contest-card.upcoming {
+    border-left: 4px solid #ffc107;
+}
+
+.contest-card.finished {
+    border-left: 4px solid #28a745;
+    opacity: 0.8;
+}
+
+.contest-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.contest-description {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.contest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.contest-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+}
+
+.contest-meta-item i {
+    color: #0d6efd;
+    font-size: 1rem;
+}
+
+.contest-meta-item span {
+    white-space: nowrap;
+    color: #495057;
+}
+
+.contest-stats {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.contest-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contest-stat-value {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.contest-stat-label {
+    font-size: 0.8rem;
+    color: #95a5a6;
+}
+
+/* 倒计时 */
+.countdown {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    background-color: #fff5f5;
+    border-radius: 8px;
+    border: 1px solid #fed7d7;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-number {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #dc3545;
+    min-width: 30px;
+    text-align: center;
+}
+
+.countdown-label {
+    font-size: 0.75rem;
+    color: #742a2a;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* 竞赛页面响应式样式 */
+@media (max-width: 768px) {
+    .contest-tabs {
+        flex-direction: column;
+    }
+    
+    .contest-card {
+        padding: 1rem;
+    }
+    
+    .contest-meta {
+        gap: 1rem;
+    }
+    
+    .contest-stats {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .countdown {
+        font-size: 1rem;
+    }
+}

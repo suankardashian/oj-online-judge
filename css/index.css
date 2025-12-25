@@ -1,0 +1,255 @@
+/* 首页特定样式 */
+
+/* 内容区域布局 */
+.content-wrapper {
+    max-width: 100%;
+    width: 100%;
+    margin: 1rem auto 0;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 320px 1fr 340px;
+    gap: 1.2rem;
+    min-height: calc(100vh - 220px);
+    box-sizing: border-box;
+}
+
+/* 左侧做题记录 */
+.record-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.record-card h5 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.record-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.record-item:last-child {
+    border-bottom: none;
+}
+
+.record-status {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+}
+
+.status-ac { background-color: #28a745; } /* 通过 */
+.status-wa { background-color: #dc3545; } /* 错误 */
+.status-tle { background-color: #ffc107; } /* 超时 */
+.status-re { background-color: #6c757d; } /* 运行错误 */
+
+.record-card .btn {
+    margin-top: auto;
+    padding: 0.6rem 0;
+}
+
+/* 轮播图卡片 */
+.carousel-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    height: 100%;
+}
+
+.carousel-item img {
+    height: calc(100vh - 240px);
+    min-height: 550px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.carousel-caption {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem 2rem;
+}
+
+.carousel-caption h5 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.carousel-caption p {
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+}
+
+/* 右侧日历 */
+.calendar-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-card h5 {
+    color: #647280;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.calendar-header h6 {
+    margin: 0;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.6rem;
+    flex: 0.5;
+}
+
+.calendar-day {
+    text-align: center;
+    padding: 1rem 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.calendar-day.weekday {
+    font-weight: 600;
+    color: #6c757d;
+    background-color: #f8f9fa;
+}
+
+.calendar-day.today {
+    border: 2px solid #0d6efd;
+    font-weight: 600;
+}
+
+/* 日历颜色梯度 - 做题数越多颜色越深 */
+.calendar-day.level-0 { background-color: #fff; } /* 0题 */
+.calendar-day.level-1 { background-color: #e8f5e9; } /* 1-2题 */
+.calendar-day.level-2 { background-color: #c8e6c9; } /* 3-5题 */
+.calendar-day.level-3 { background-color: #a5d6a7; } /* 6-10题 */
+.calendar-day.level-4 { background-color: #81c784; } /* 10题以上 */
+
+.calendar-day.level-1:hover,
+.calendar-day.level-2:hover,
+.calendar-day.level-3:hover,
+.calendar-day.level-4:hover {
+    transform: scale(1.05);
+}
+
+.calendar-legend {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+}
+
+.calendar-card .btn {
+    margin-top: auto;
+    padding: 0.6rem 0;
+    margin-top: 1.5rem;
+}
+
+/* 首页特定响应式适配 */
+/* 大屏（全屏）- 占满100%宽度 */
+@media (min-width: 1400px) {
+    .content-wrapper {
+        padding: 0 2rem;
+        grid-template-columns: 350px 1fr 370px;
+    }
+    .carousel-item img {
+        height: calc(100vh - 220px);
+        min-height: 600px;
+    }
+}
+
+/* 中屏 */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        grid-template-columns: 300px 1fr 320px;
+    }
+    .carousel-item img {
+        height: 450px;
+        min-height: 450px;
+    }
+}
+
+/* 小屏 */
+@media (max-width: 992px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        min-height: auto;
+    }
+    .record-card, .calendar-card {
+        height: fit-content;
+        margin-bottom: 1.5rem;
+    }
+    .carousel-item img {
+        height: 350px;
+        min-height: 350px;
+    }
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 0 0.8rem;
+    }
+    .carousel-item img {
+        height: 280px;
+        min-height: 280px;
+    }
+    .calendar-grid {
+        gap: 0.4rem;
+    }
+    .calendar-day {
+        padding: 0.8rem 0;
+    }
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>竞赛活动 - OJ在线判题平台</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" />
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/contest.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg oj-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="Index.html">
+                <i class="fas fa-code me-2 text-primary"></i>
+                <span>OJ在线判题平台</span>
+            </a>
+
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse" id="ojNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProblemList.html">
+                            <i class="fas fa-list-ol me-1"></i>题目列表
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ranking.html">
+                            <i class="fas fa-trophy me-1"></i>刷题排行
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Contest.html">
+                            <i class="fas fa-calendar-alt me-1"></i>竞赛活动
+                            <span class="badge bg-danger ms-1">新</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Category.html">
+                            <i class="fas fa-book me-1"></i>题库分类
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 用户区域 -->
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item me-3">
+                        <a class="nav-link d-flex align-items-center" href="Mine.html" id="userInfo">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded-circle" height="24" alt="用户头像" id="userAvatar"/>
+                            <span class="ms-2" id="userName">张三</span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge rounded-pill bg-danger position-absolute top-0 end-0 translate-middle" id="noticeCount">5</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-mdb-dropdown-init>
+                            <i class="fas fa-cog fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="Mine.html">个人中心</a></li>
+                            <li><a class="dropdown-item" href="#">刷题统计</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="Login.html">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#ojNavbar"
+                    aria-controls="ojNavbar" aria-expanded="" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="content-wrapper single-column">
+        <div class="col-12">
+            <!-- 竞赛活动部分 -->
+            <div class="contest-section">
+                <h3 class="section-title">
+                    <i class="fas fa-calendar-alt me-2 text-primary"></i>竞赛活动
+                </h3>
+                
+                <!-- 竞赛类型标签 -->
+                <div class="contest-tabs">
+                    <div class="contest-tab active" onclick="switchContestTab('ongoing')">
+                        <i class="fas fa-play-circle me-1"></i>进行中
+                    </div>
+                    <div class="contest-tab" onclick="switchContestTab('upcoming')">
+                        <i class="fas fa-clock me-1"></i>即将开始
+                    </div>
+                    <div class="contest-tab" onclick="switchContestTab('ended')">
+                        <i class="fas fa-check-circle me-1"></i>已结束
+                    </div>
+                </div>
+                
+                <!-- 竞赛列表 -->
+                <div id="contestList">
+                    <div class="text-center text-muted py-3">加载中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MDB JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script src= "../js/Contest.js"></script>
+</body>
+
+</html>

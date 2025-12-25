@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.oj-navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    width: 100%;
+    margin: 0;
+}
+
+.oj-navbar .container-fluid {
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 1.5rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.oj-navbar .navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #2c3e50 !important;
+    display: flex;
+    align-items: center;
+}
+
+.oj-navbar .navbar-collapse {
+    justify-content: space-between;
+}
+
+.oj-navbar .nav-link {
+    color: #34495e !important;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
+    display: flex;
+    align-items: center;
+}
+
+.oj-navbar .nav-link.active {
+    color: #0d6efd !important;
+    font-weight: 600;
+}
+
+.oj-navbar .badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.2rem;
+}
+
+/* 用户区域样式优化 */
+.oj-navbar .navbar-nav.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.oj-navbar .nav-item.me-3 {
+    margin-right: 1rem !important;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    width: 100%;
+    margin: 1rem auto 0;
+    padding: 0 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+    box-sizing: border-box;
+}
+
+.content-wrapper.single-column {
+    grid-template-columns: 1fr;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        padding: 0 1rem;
+    }
+    .oj-navbar .nav-link {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 768px) {
+    .oj-navbar .container-fluid {
+        padding: 0 1rem;
+    }
+    
+    .content-wrapper {
+        padding: 0 0.8rem;
+    }
+    
+    .oj-navbar .navbar-brand {
+        font-size: 1.1rem;
+    }
+    
+    .oj-navbar .nav-link {
+        padding: 0.5rem 0.8rem !important;
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+    
+    .oj-navbar .navbar-nav.flex-row {
+        display: block;
+        margin-top: 1rem;
+    }
+    
+    .oj-navbar .navbar-nav.flex-row .nav-item {
+        margin-right: 0 !important;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
+    .oj-navbar .navbar-nav.flex-row .nav-link {
+        justify-content: center;
+    }
+}

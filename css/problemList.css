@@ -1,0 +1,122 @@
+/* 题目列表页面特定样式 */
+
+/* 题目列表区域 */
+.problem-list-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2rem;
+}
+
+/* 筛选栏 */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+}
+
+.difficulty-select, .category-select {
+    width: 200px;
+}
+
+/* 题目项 */
+.problem-item {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.problem-item:last-child {
+    border-bottom: none;
+}
+
+.problem-info {
+    flex: 1;
+}
+
+.problem-title {
+    font-size: 1.1rem;
+    color: #34495e;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.problem-description {
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+}
+
+.problem-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: #95a5a6;
+}
+
+.problem-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+/* 难度标签 */
+.difficulty-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.difficulty-easy { background-color: #e8f5e9; color: #2e7d32; }
+.difficulty-medium { background-color: #fff3e0; color: #ef6c00; }
+.difficulty-hard { background-color: #ffebee; color: #c62828; }
+
+/* 题目列表响应式样式 */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+    }
+    
+    .search-box, .difficulty-select, .category-select {
+        width: 100%;
+    }
+    
+    .problem-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .problem-stats {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+    
+    .problem-meta {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}

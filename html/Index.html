@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OJ在线判题平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg oj-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="Index.html">
+                <i class="fas fa-code me-2 text-primary"></i>
+                <span>OJ在线判题平台</span>
+            </a>
+
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse" id="ojNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Index.html">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProblemList.html">
+                            <i class="fas fa-list-ol me-1"></i>题目列表
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ranking.html">
+                            <i class="fas fa-trophy me-1"></i>刷题排行
+                            <span class="badge bg-danger ms-1">新</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contest.html">
+                            <i class="fas fa-calendar-alt me-1"></i>竞赛活动
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Category.html">
+                            <i class="fas fa-book me-1"></i>题库分类
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 用户区域 -->
+                <ul class="navbar-nav flex-row">
+                    <li class="nav-item me-3">
+                        <a class="nav-link d-flex align-items-center" href="./Mine.html" id="userInfo">
+                            <img src="" class="rounded-circle" height="24" alt="用户头像" id="userAvatar"/>
+                            <span class="ms-2" id="userName">加载中...</span>
+                        </a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge rounded-pill bg-danger position-absolute top-0 end-0 translate-middle" id="noticeCount">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-mdb-dropdown-init>
+                            <i class="fas fa-cog fa-lg"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./Mine.html">个人中心</a></li>
+                            <li><a class="dropdown-item" href="#">刷题统计</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+           <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#ojNavbar"
+            aria-controls="ojNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- 内容区域 -->
+    <div class="content-wrapper home">
+        <!-- 左侧：做题记录 -->
+        <div class="record-card">
+            <h5><i class="fas fa-history me-2 text-primary"></i>最近做题记录</h5>
+            <div id="recordList">
+                <!-- 动态渲染做题记录 -->
+                <div class="text-center text-muted py-3">加载中...</div>
+            </div>
+            <a href="#" class="btn btn-sm btn-outline-primary w-100">
+                <i class="fas fa-list me-1"></i>查看全部记录
+            </a>
+        </div>
+
+        <!-- 中间：轮播图 -->
+        <div class="carousel-card">
+            <div id="ojCarousel" class="carousel slide" data-mdb-ride="carousel" data-mdb-interval="5000">
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- 动态渲染轮播指示器 -->
+                </div>
+                <div class="carousel-inner" id="carouselInner">
+                    <!-- 动态渲染轮播内容 -->
+                    <div class="carousel-item active">
+                        <img src="https://picsum.photos/id/180/1920/1080" class="d-block w-100" alt="加载中..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>加载中...</h5>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-mdb-target="#ojCarousel" data-mdb-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">上一页</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-mdb-target="#ojCarousel" data-mdb-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">下一页</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 右侧 -->
+        <div class="calendar-card">
+            <h5><i class="fas fa-calendar me-2 text-primary"></i>刷题日历</h5>
+            
+            <div class="calendar-header">
+                <h6 id="calendarMonth">2025年6月</h6>
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary me-1" onclick="changeCalendarMonth(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="changeCalendarMonth(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- 动态渲染日历 -->
+                <div class="text-center text-muted py-3 col-12">加载中...</div>
+            </div>
+
+            <!-- 日历颜色说明 -->
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e8f5e9;"></div>
+                    <span>1-2题</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #c8e6c9;"></div>
+                    <span>3-5题</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #a5d6a7;"></div>
+                    <span>6-10题</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #81c784;"></div>
+                    <span>10题+</span>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-sm btn-outline-primary w-100">
+                <i class="fas fa-chart-line me-1"></i>月度刷题统计
+            </a>
+        </div>
+    </div>
+    <!--footer-->
+    <iframe src="footer.html" style="width:100%; border:none; height:550px; margin-top: 1rem;"></iframe>
+
+    <!-- MDB JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+</html>
