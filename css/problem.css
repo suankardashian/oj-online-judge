@@ -1,0 +1,174 @@
+
+.problem-info-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.problem-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.problem-header h1 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.problem-meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.problem-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.problem-description-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#problemDescription {
+    line-height: 1.7;
+    color: #34495e;
+    font-size: 0.95rem;
+}
+
+.code-editor-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.editor-container {
+    margin-bottom: 1rem;
+}
+
+#codeEditor {
+    width: 100%;
+    height: 350px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    background-color: #f8f9fa;
+}
+
+.language-select {
+    margin-bottom: 1rem;
+    width: 200px;
+}
+
+/* 提交按钮 */
+.submit-button-container {
+    text-align: right;
+}
+
+#submitBtn {
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+}
+.result-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.result-status {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.status-accepted {
+    color: #28a745;
+}
+
+.status-wrong-answer {
+    color: #dc3545;
+}
+
+.status-time-limit {
+    color: #ffc107;
+}
+
+.status-runtime-error {
+    color: #fd7e14;
+}
+
+.status-compile-error {
+    color: #6f42c1;
+}
+
+.test-case-results {
+    margin-top: 1rem;
+}
+
+.test-case-item {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border-left: 4px solid #ddd;
+}
+
+.test-case-passed {
+    background-color: #d4edda;
+    border-left-color: #28a745;
+    color: #155724;
+}
+
+.test-case-failed {
+    background-color: #f8d7da;
+    border-left-color: #dc3545;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .problem-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    #codeEditor {
+        height: 250px;
+    }
+    
+    .result-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}

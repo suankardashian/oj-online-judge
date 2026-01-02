@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const sequelize = require('../config/db.js');
 
 const Problem = sequelize.define('Problem', {
     id: {
@@ -34,6 +34,11 @@ const Problem = sequelize.define('Problem', {
     attempt_count: {
         type: DataTypes.INTEGER,
         defaultValue: 0
+    },
+    test_cases: {
+        type: DataTypes.JSON,
+        allowNull: true,
+        comment: '存储测试用例的JSON数组'
     },
     created_at: {
         type: DataTypes.DATE,

@@ -38,12 +38,10 @@ Submission.hasMany(TestCaseResult, {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 中间件
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'html')));
+app.use(express.static(__dirname));
 
-// 路由
 app.use('/api/auth', authRoutes);
 app.use('/api/problems', problemRoutes);
 app.use('/api/submissions', submissionRoutes);
@@ -52,6 +50,11 @@ app.use('/api/contests', contestRoutes);
 // 首页路由
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Index.html'));
+});
+
+// 处理HTML页面请求
+app.get('*.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', req.path));
 });
 
 // 启动服务器

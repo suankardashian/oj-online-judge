@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const sequelize = require('../config/db.js');
 const bcrypt = require('bcrypt');
 
 const User = sequelize.define('User', {
@@ -41,7 +41,7 @@ const User = sequelize.define('User', {
     tableName: 'users',
     timestamps: false,
     hooks: {
-        // 在保存用户之前哈希密码
+        // 在保存用户之前哈希加密
         beforeCreate: async (user) => {
             if (user.password) {
                 const salt = await bcrypt.genSalt(10);

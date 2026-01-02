@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Submission = require('../models/Submission');
-const Problem = require('../models/Problem');
-const User = require('../models/User');
-const TestCaseResult = require('../models/TestCaseResult');
+const Submission = require('../models/Submission.js');
+const Problem = require('../models/Problem.js');
+const User = require('../models/User.js');
+const TestCaseResult = require('../models/TestCaseResult.js');
 const jwt = require('jsonwebtoken');
 
 // 中间件：验证token
@@ -22,7 +22,6 @@ const authenticateToken = (req, res, next) => {
     }
 };
 
-// 提交代码
 router.post('/', authenticateToken, async (req, res) => {
     try {
         const { problemId, code, language } = req.body;
@@ -34,51 +33,92 @@ router.post('/', authenticateToken, async (req, res) => {
             return res.status(404).json({ message: '题目不存在' });
         }
 
+        // 检查题目是否有测试用例
+        if (!problem.test_cases || !Array.isArray(problem.test_cases) || problem.test_cases.length === 0) {
+            return res.status(400).json({ message: '题目没有配置测试用例，无法进行评测' });
+        }
+
         // 初始化提交结果
         let result = 'Pending';
         let score = 0;
         let executionTime = 0;
         const testCaseResults = [];
+        const testCases = problem.test_cases;
 
-        // 简单的JavaScript代码判题
         if (language === 'javascript') {
-            // 这里应该从数据库或其他地方获取测试用例
-            // 目前使用模拟测试用例
-            const testCases = [
-                { input: '1,2', output: '3' },
-                { input: '5,7', output: '12' },
-                { input: '0,0', output: '0' }
-            ];
 
             for (let i = 0; i < testCases.length; i++) {
-                const { input, output } = testCases[i];
+                const testCase = testCases[i];
+                const { input, output } = testCase;
                 let passed = false;
                 let actual = '';
+                let errorMsg = '';
 
                 try {
+                    // 检查代码是否定义了一个函数
+                    if (!code.includes('function') && !code.includes('=>')) {
+                        throw new Error('代码中需要定义一个函数');
+                    }
+                    
                     // 创建函数环境并执行代码
-                    const func = new Function('input', code);
                     const startTime = Date.now();
-                    actual = func(input).toString().trim();
+                    
+                    // 处理不同的函数格式
+                    let func;
+                    try {
+                        if (code.includes('=>')) {
+                            // 箭头函数
+                            func = new Function('input', `return (${code})(input)`);
+                        } else if (code.trim().startsWith('function')) {
+                            // 函数声明 - 需要包装成函数表达式
+                            const match = code.match(/^function\s*\(([^)]*)\)\s*\{([\s\S]*)\}$/);
+                            if (match) {
+                                const params = match[1].trim();
+                                const body = match[2];
+                                func = new Function('input', `return (function(${params}) { ${body} })(input)`);
+                            } else {
+                                // 尝试其他方式
+                                func = new Function('input', `return (${code})(input)`);
+                            }
+                        } else {
+                            // 其他情况，假设是直接返回语句
+                            func = new Function('input', `return (${code})`);
+                        }
+                        
+                        actual = func(input);
+                    } catch (err) {
+                        throw new Error('代码执行错误: ' + err.message);
+                    }
+                    
                     const endTime = Date.now();
                     executionTime += (endTime - startTime);
 
+                    // 确保结果是字符串并去除空格
+                    if (actual !== null && actual !== undefined) {
+                        actual = actual.toString().trim();
+                    } else {
+                        actual = '';
+                    }
+
                     // 比较结果
-                    if (actual === output.trim()) {
+                    if (actual === output.toString().trim()) {
                         passed = true;
                         score += 100 / testCases.length;
                     }
                 } catch (err) {
+                    errorMsg = err.message;
                     actual = `运行错误: ${err.message}`;
                     passed = false;
+                    console.error(`测试用例 ${i + 1} 执行错误:`, err);
                 }
 
                 testCaseResults.push({
                         passed,
-                        expected: output.trim(),
+                        expected: output.toString().trim(),
                         actual,
                         test_case_order: i,
-                        input: input // 添加输入字段，与前端期望一致
+                        input: input.toString(),
+                        error: errorMsg || null
                     });
             }
 
@@ -91,7 +131,6 @@ router.post('/', authenticateToken, async (req, res) => {
                 result = 'Wrong Answer';
             }
         } else {
-            // 其他语言暂不支持
             result = 'Language Not Supported';
         }
 
@@ -106,15 +145,12 @@ router.post('/', authenticateToken, async (req, res) => {
             execution_time: executionTime
         });
 
-        // 创建测试用例结果记录
         for (const testCaseResult of testCaseResults) {
             await TestCaseResult.create({
                 ...testCaseResult,
                 submission_id: submission.id
             });
         }
-
-        // 更新用户提交次数
         await User.increment('submission_count', {
             where: { id: userId }
         });
@@ -150,7 +186,6 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 });
 
-// 获取提交历史
 router.get('/', authenticateToken, async (req, res) => {
     try {
         const { page = 1, limit = 10, problemId } = req.query;
@@ -192,12 +227,10 @@ router.get('/:id', authenticateToken, async (req, res) => {
             return res.status(404).json({ message: '提交记录不存在' });
         }
 
-        // 检查权限
         if (submission.user_id !== req.userId) {
             return res.status(403).json({ message: '无权访问' });
         }
 
-        // 转换为前端期望的格式
         const submissionData = submission.toJSON();
         submissionData.testCases = submissionData.TestCaseResults;
         delete submissionData.TestCaseResults;

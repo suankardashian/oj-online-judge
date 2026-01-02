@@ -35,13 +35,9 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// 创建竞赛
 router.post('/', async (req, res) => {
     try {
-        // 这里应该添加管理员验证
         const { title, description, startTime, endTime, problems } = req.body;
-
-        // 计算竞赛状态
         const now = new Date();
         let status = 'upcoming';
         if (now >= startTime && now <= endTime) {
@@ -71,7 +67,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// 更新竞赛状态（用于定时任务）
 router.patch('/:id/status', async (req, res) => {
     try {
         const { id } = req.params;

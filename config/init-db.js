@@ -5,7 +5,6 @@ const Submission = require('../models/Submission');
 const Contest = require('../models/Contest');
 const TestCaseResult = require('../models/TestCaseResult');
 
-// 定义表关联
 User.hasMany(Submission, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
@@ -23,7 +22,6 @@ Submission.hasMany(TestCaseResult, {
 
 async function initDB() {
     try {
-        // 自动创建表
         await sequelize.sync({
             alter: true // 使用alter: true而不是force: true以保留现有数据
         });
@@ -41,7 +39,12 @@ async function initDB() {
                     category: '数组',
                     pass_rate: 0,
                     solved_count: 0,
-                    attempt_count: 0
+                    attempt_count: 0,
+                    test_cases: [
+                        { input: '[2,7,11,15],9', output: '[0,1]' },
+                        { input: '[3,2,4],6', output: '[1,2]' },
+                        { input: '[3,3],6', output: '[0,1]' }
+                    ]
                 },
                 {
                     title: '反转链表',
@@ -50,7 +53,12 @@ async function initDB() {
                     category: '链表',
                     pass_rate: 0,
                     solved_count: 0,
-                    attempt_count: 0
+                    attempt_count: 0,
+                    test_cases: [
+                        { input: '[1,2,3,4,5]', output: '[5,4,3,2,1]' },
+                        { input: '[1,2]', output: '[2,1]' },
+                        { input: '[]', output: '[]' }
+                    ]
                 },
                 {
                     title: '最大子数组和',
@@ -59,7 +67,12 @@ async function initDB() {
                     category: '动态规划',
                     pass_rate: 0,
                     solved_count: 0,
-                    attempt_count: 0
+                    attempt_count: 0,
+                    test_cases: [
+                        { input: '[-2,1,-3,4,-1,2,1,-5,4]', output: '6' },
+                        { input: '[1]', output: '1' },
+                        { input: '[5,4,-1,7,8]', output: '23' }
+                    ]
                 }
             ];
             

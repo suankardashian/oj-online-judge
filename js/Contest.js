@@ -2,11 +2,18 @@ let currentContestTab = 'ongoing';
 let countdownTimers = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 加载竞赛数据
+    loadUserInfo();
     loadContestData(currentContestTab);
 });
-
-// 切换竞赛标签
+function loadUserInfo() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        const userNameElement = document.getElementById('userName');
+        if (userNameElement) {
+            userNameElement.textContent = username;
+        }
+    }
+}
 function switchContestTab(tab) {
     // 清除所有计时器
     countdownTimers.forEach(timer => clearInterval(timer));

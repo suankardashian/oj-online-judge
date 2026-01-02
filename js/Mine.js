@@ -1,16 +1,17 @@
  document.addEventListener('DOMContentLoaded', function() {
-            // 加载用户数据和最近做题记录
             loadUserData();
             loadRecentRecords();
         });
 
-        // 加载用户数据
         function loadUserData() {
-            // 模拟从服务器获取用户数据
+            const username = localStorage.getItem('username') || '未知用户';
+            const email = localStorage.getItem('email') || 'unknown@example.com';
+            const userId = localStorage.getItem('userId');
+            
             const userData = {
                 avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/1.webp",
-                name: "张三",
-                email: "zhangsan@example.com",
+                name: username,
+                email: email,
                 stats: {
                     totalProblems: 128,
                     solvedProblems: 86,
@@ -18,22 +19,19 @@
                     rank: 142
                 }
             };
-
-            // 更新页面上的用户信息
             document.getElementById('profileAvatar').src = userData.avatar;
             document.getElementById('profileName').textContent = userData.name;
             document.getElementById('profileEmail').textContent = userData.email;
             document.getElementById('userAvatar').src = userData.avatar;
             document.getElementById('userName').textContent = userData.name;
 
-            // 更新统计数据
             document.getElementById('totalProblems').textContent = userData.stats.totalProblems;
             document.getElementById('solvedProblems').textContent = userData.stats.solvedProblems;
             document.getElementById('acRate').textContent = userData.stats.acRate + '%';
             document.getElementById('rank').textContent = userData.stats.rank;
         }
 
-        // 加载最近做题记录
+
         function loadRecentRecords() {
             // 模拟最近做题记录数据
             const recentRecords = [
@@ -91,10 +89,8 @@
             recordsContainer.innerHTML = html;
         }
 
-        // 退出登录功能
         function logout() {
             if (confirm('确定要退出登录吗？')) {
-                // 模拟退出登录请求
                 console.log('用户已退出登录');
                 // 退出成功后跳转到登录页面
                 window.location.href = 'Login.html';

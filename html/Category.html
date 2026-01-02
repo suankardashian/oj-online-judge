@@ -79,9 +79,16 @@
             </div>
 
             <!-- 移动端菜单按钮 -->
-            <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#ojNavbar"
-                    aria-controls="ojNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#ojNavbar"
+                aria-controls="ojNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
@@ -93,20 +100,16 @@
                 <h3 class="section-title">
                     <i class="fas fa-book me-2 text-primary"></i>题库分类
                 </h3>
-                
-                <!-- 分类网格 -->
                 <div id="categoryGrid">
-                    <!-- 动态渲染分类卡片 -->
                 </div>
-                
-                <!-- 分类详情部分 -->
+
                 <div id="categoryDetail" style="display: none;">
                     <button class="back-button" onclick="showCategoryGrid()">
                         <i class="fas fa-arrow-left"></i>
                         返回分类列表
                     </button>
                     <div id="detailContent">
-                        <!-- 动态渲染分类详情 -->
+
                     </div>
                 </div>
             </div>

@@ -50,7 +50,6 @@ router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        // 查找用户
         const user = await User.findOne({
             where: {
                 [Op.or]: [{ username }, { email: username }]
@@ -60,7 +59,6 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: '用户不存在' });
         }
 
-        // 验证密码
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
             return res.status(400).json({ message: '密码错误' });

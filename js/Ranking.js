@@ -3,7 +3,18 @@ let currentRankingType = 'daily';
 document.addEventListener('DOMContentLoaded', function() {
     // 加载排名数据
     loadRankingData(currentRankingType);
+    // 更新个人排名用户名
+    updatePersonalRankingUsername();
 });
+
+// 更新个人排名区域的用户名
+function updatePersonalRankingUsername() {
+    const username = localStorage.getItem('username') || '张三';
+    const element = document.getElementById('personalRankingUsername');
+    if (element) {
+        element.textContent = username;
+    }
+}
 
 // 切换排名类型
 function switchRankingType(type) {
@@ -32,7 +43,7 @@ function loadRankingData(type) {
         { id: 8, avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/9.webp", username: "数据结构迷", points: 2120, solved: 165, submissions: 367, passRate: 45.0 },
         { id: 9, avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/10.webp", username: "编程学习者", points: 2010, solved: 154, submissions: 356, passRate: 43.3 },
         { id: 10, avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/11.webp", username: "算法初学者", points: 1900, solved: 143, submissions: 345, passRate: 41.4 },
-        { id: 11, avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/1.webp", username: "张三", points: 1250, solved: 86, submissions: 245, passRate: 35.1 }
+        { id: 11, avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/1.webp", username: localStorage.getItem('username') || '张三', points: 1250, solved: 86, submissions: 245, passRate: 35.1 }
     ];
 
     renderRankingTable(rankingData);
@@ -51,7 +62,8 @@ function renderRankingTable(rankingData) {
         else if (index === 2) positionClass = 'bronze';
         
         // 检查是否是当前用户
-        const isCurrentUser = user.username === '张三';
+        const currentUsername = localStorage.getItem('username') || '张三';
+        const isCurrentUser = user.username === currentUsername;
         
         html += `
         <tr class="ranking-row ${isCurrentUser ? 'highlight' : ''}">

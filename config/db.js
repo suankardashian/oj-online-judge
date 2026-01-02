@@ -5,10 +5,12 @@ const sequelize = new Sequelize({
   host: 'localhost',
   port: 3306,
   username: 'root',
-  password: '0054', // 用户提供的MySQL密码
+  password: '0054', 
   database: 'oj_platform',
   define: {
+    //时间戳工具：创建时间和更新时间
     timestamps: true,
+    //数据库中下划线命名的方式
     underscored: true
   }
 });

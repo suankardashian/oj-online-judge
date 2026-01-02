@@ -98,11 +98,20 @@ const categoryData = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 渲染分类网格
+    loadUserInfo();
     renderCategoryGrid();
 });
 
-// 渲染分类网格
+function loadUserInfo() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        const userNameElement = document.getElementById('userName');
+        if (userNameElement) {
+            userNameElement.textContent = username;
+        }
+    }
+}
+
 function renderCategoryGrid() {
     const categoryGrid = document.getElementById('categoryGrid');
     
@@ -130,16 +139,13 @@ function renderCategoryGrid() {
     categoryGrid.innerHTML = html;
 }
 
-// 显示分类详情
 function showCategoryDetail(categoryId) {
     const category = categoryData.find(c => c.id === categoryId);
     if (!category) return;
     
-    // 隐藏分类网格，显示分类详情
     document.getElementById('categoryGrid').style.display = 'none';
     document.getElementById('categoryDetail').style.display = 'block';
-    
-    // 渲染分类详情
+    //分类详情
     const detailContent = document.getElementById('detailContent');
     detailContent.innerHTML = `
         <div class="detail-title">${category.name} - ${category.count} 道题目</div>

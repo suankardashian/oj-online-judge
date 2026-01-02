@@ -15,18 +15,12 @@
             new mdb.Dropdown(dropdown);
         });
 
-        // 初始化折叠菜单（移动端导航）
-        // const collapses = document.querySelectorAll('[data-mdb-collapse-init]');
-        // collapses.forEach(collapse => {
-        //     new mdb.Collapse(collapse);
-        // });
-
         loadAllData();
     });
 
     async function loadAllData() {
         try {
-            // 并行请求所有数据（你需要替换为真实后端接口）
+            // 并行请求所有数据、
             const [userRes, recordRes, carouselRes, calendarRes] = await Promise.all([
                 fetch('/api/user/info'), // 用户信息接口
                 fetch(`/api/record/recent`), // 最近做题记录接口
@@ -57,12 +51,12 @@
         }
     }
 
-    // 3. 加载默认数据（开发阶段用，对接后端后可删除）
+    // 3. 加载默认数据
     function loadDefaultData() {
         // 默认用户信息
         userData = {
             avatar: "https://mdbcdn.b-cdn.net/img/new/avatars/1.webp",
-            name: "张三",
+            name: localStorage.getItem('username') || '张三',
             noticeCount: 5
         };
 
@@ -82,13 +76,11 @@
             { img: "https://picsum.photos/id/1/1920/1080", title: "新手刷题指南", desc: "从基础到进阶，系统掌握算法与数据结构" }
         ];
 
-        // 默认日历数据（key: 日期, value: 做题数）
         calendarData = {
             2: 2, 3: 1, 6: 4, 8: 3, 11: 5, 14: 7, 15: 8, 18: 3, 20: 6, 22: 9, 25: 11
         };
     }
 
-    // 4. 渲染用户信息
     function renderUserInfo() {
         document.getElementById('userAvatar').src = userData.avatar || "";
         document.getElementById('userName').textContent = userData.name || "未知用户";
@@ -235,7 +227,7 @@
         calendarGrid.innerHTML = html;
     }
 
-    // 8. 切换日历月份
+    // 切换日历月份
     function changeCalendarMonth(step) {
         currentMonth += step;
         if (currentMonth > 12) {
